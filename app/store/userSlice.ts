@@ -15,10 +15,12 @@ const userSlice = createSlice({
     setUser: (state, action: PayloadAction<{ id: number; name: string }>) => {
       state.id = action.payload.id;
       state.name = action.payload.name;
+      localStorage.setItem("user", JSON.stringify(action.payload));
     },
     clearUser: (state) => {
       state.id = null;
       state.name = "";
+      localStorage.removeItem("user");
     },
   },
 });
