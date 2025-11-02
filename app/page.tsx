@@ -9,34 +9,42 @@ export default function Home() {
   const user = useAppSelector((state) => state.user);
 
   return (
-    <div className=" text-[#819dfe] flex sm:flex-row flex-col items-center justify-center my-20 gap-4">
+    <div className=" text-[#819dfe] flex sm:flex-row flex-col items-center justify-center my-2 sm:min-h-screen">
+      <div className="sm:hidden flex flex-col justify-center items-center gap-5 ">
+         <h2 className=" text-gray-900">Welcome to your habits journey</h2>
+           <h1 className="text-[32px] text-2xl max-w-[400px] font-bold text-center text-green-950">
+          Trak Your Habits,<br/> Transform Your Life
+        </h1>
+      </div>
+     
+
       <Image
         src={"/img/main.jpg"}
-        width={600}
-        height={600}
+        width={400}
+        height={300}
         alt="Healthy people"
       />
-      <div className="flex flex-col gap-5 justify-center items-center m-10">
-        <h1 className="sm:text-4xl text-2xl max-w-[400px] font-bold text-center text-[#087f6a]">
+      <div className="flex flex-col  justify-center items-center sm:items-start">
+      <h1 className="hidden sm:block sm:text-[48px] max-w-[400px] font-bold text-center text-[#087f6a] sm:text-left">
           Trak Your Habits, Transform Your Life
         </h1>
 
         {!user.id && (
-          <div>
+          <div className="flex flex-col justify-center items-center mx-auto gap-5">
             <Login />
             <Link
               href={"/register"}
-              className="sm:text-xl text-[#4c69c7] underline"
+              className="sm:text-xl text-[#4c69c7] underline "
             >
               New here? Create an account!
             </Link>
           </div>
         )}
         {user.id && (
-          <div className="flex flex-col gap-3 mt-10 justify-center items-center">
-            <p className="text-xl text-[#e93f2e] text-center">Hello, <span>{user.name}</span></p>
-           <p>Keep going - your future self will thank you!</p>
-           <Link className="bg-[#75a20a] w-40 flex justify-center text-white p-2 rounded" href={`/user/${user.id}`}>
+          <div className="flex flex-col gap-3  justify-center items-center sm:items-start sm:mt-5">
+            <p className="text-xl text-[#e93f2e] text-center font-bold sm:text-left">Hello, <span>{user.name}</span></p>
+           <p className="text-gray-900">Keep going - your future self will thank you!</p>
+           <Link className="sm:mt-10 bg-green-800 w-[200px] flex justify-center text-white p-2 rounded-xl" href={`/user/${user.id}`}>
           Get Start!
         </Link>
           </div>
