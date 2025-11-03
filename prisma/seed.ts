@@ -67,10 +67,10 @@ async function main() {
   for (const date of days) {
     await prisma.habitLog.createMany({
       data: [
-        { habitId: drinkWater.id, date, completed: Math.random() > 0.2 },
-        { habitId: morningWalk.id, date, completed: Math.random() > 0.5 },
-        { habitId: readBook.id, date, completed: Math.random() > 0.1 },
-        { habitId: meditate.id, date, completed: Math.random() > 0.25 },
+        { habitId: drinkWater.id, date},
+        { habitId: morningWalk.id, date},
+        { habitId: readBook.id, date},
+        { habitId: meditate.id, date},
       ],
     });
   }
