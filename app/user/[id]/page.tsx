@@ -3,9 +3,16 @@
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../store/hooks";
 import Header from "@/app/components/Header";
-import type { Habit } from "@prisma/client";
+//import type { Habit } from "@prisma/client";
 import HabitItem from "@/app/components/HabitItem";
 import AddHabitForm from "@/app/components/AddHabitForm";
+type Habit = {
+    id:number,
+    name:string,
+    description:string|null,
+    userId:number,  
+    createdAt:Date
+}
 
 const UserPage = () => {
   const user = useAppSelector((state) => state.user);
