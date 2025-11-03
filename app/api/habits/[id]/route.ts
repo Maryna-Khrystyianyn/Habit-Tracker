@@ -1,22 +1,36 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
-export async function GET(
+export async function DELETE(
   request: Request,
-  context: { params: Promise<{ id: string }> }  // 👈 Додай Promise тут
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await context.params; // 👈 І await тут
-  const userId = parseInt(id);
+  try {
+    const { id } = await context.params;
+    const habitId = parseInt(id);
 
-  console.log("userID!!!!!!!!!!!", userId);
+    if (isNaN(habitId)) {
+      return NextResponse.json({ error: "Invalid habit ID" }, { status: 400 });
+    }
 
-  if (isNaN(userId)) {
-    return NextResponse.json({ error: "Invalid userId" }, { status: 400 });
+   /*  // 1️⃣ Спочатку видаляємо всі HabitLogs для цієї звички
+    await prisma.habitLog.deleteMany({
+      where: { habitId },
+    }); */
+
+    // delete habit
+    await prisma.habit.delete({
+      where: { id: habitId },
+    });
+
+    return NextResponse.json({
+      message: "Habit and logs deleted successfully",
+    });
+  } catch (error) {
+    console.error("Error deleting habit:", error);
+    return NextResponse.json(
+      { error: "Failed to delete habit" },
+      { status: 500 }
+    );
   }
-
-  const habits = await prisma.habit.findMany({
-    where: { userId },
-  });
-
-  return NextResponse.json(habits);
 }
