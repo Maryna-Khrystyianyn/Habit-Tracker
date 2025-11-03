@@ -1,16 +1,16 @@
 "use client";
 
-// import  { Habit } from "@prisma/client";
+import type { Habit } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 
-type Habit = {
+/* type Habit = {
     id:number,
     name:string,
     description:string|null,
     userId:number,  
     createdAt:Date
-}
+} */
 
 interface HabitItemProps {
   habit: Habit;
